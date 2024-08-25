@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-size: 500% 500%;
+            overflow: hidden;
+        }
+        main {
+            position: relative;
+            margin-top: 80px;
+            padding: 20px;
+        }
+        #bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        } 
+
+        /* Main content styles */
+        .content {
+            padding: 10px 20px 20px 20px; /* Adjust for the fixed header */
+            text-align: center;
+        }
+
+        h1 {
+            color: #ffffff;
+            margin-bottom: 30px;
+        }
+
+        /* Button styles */
+        .btn {
+            margin: 10px;
+            padding: 15px 30px;
+            font-size: 16px;
+            cursor: pointer;
+            color: wheat;
+            border: 2px solid transparent;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            background: rgba(0, 0, 0, 0.63);
+            box-shadow: 0 4px 8px rgba(241, 241, 241, 0.411);
+        }
+        .btn:hover {
+      background-color:wheat;
+      color: #000;
+      transform: scale(1.05);
+      box-shadow: 0 4px 8px rgba(255, 217, 0, 0.829);
+    }
+    .glowing-text {
+      font-size: 3rem;
+      color: #fff;
+      text-shadow: 0 0 10px #e91e63, 0 0 20px #e91e63, 0 0 30px #e91e63, 0 0 40px #e91e63, 0 0 50px #e91e63;
+      animation: glowAnimation 3s ease-in-out infinite alternate;
+    }
+    @keyframes glowAnimation {
+      from {
+        text-shadow: 0 0 10px wheat, 0 0 20px wheat, 0 0 30px wheat, 0 0 40px wheat, 0 0 50px wheat;
+      }
+      to {
+        text-shadow: 0 0 20px #000, 0 0 20px #000, 0 0 30px #000, 0 0 40px #000, 0 0 50px #000;
+      }
+    }
+
+        
+    </style>
+</head>
+<main id="bg-video">
+    <video autoplay muted loop id="bg-video">
+      <source src="/my portfolio/templates/VcdnfaeVS1x0xxC_Berserk-Eclipse-4K_1_1_091116_3_091425.mp4" type="video/mp4">
+    </video>
+<body>
+    <!-- Header -->
+    <nav>
+      <ul>
+          <li><a class="btn" href="\my portfolio\page1.html">Home</a></li>
+          <br>
+          <br>
+          <li><a class="btn" href="\my portfolio\Task.html">All Projects</a></li>
+      </ul>
+  </nav>
+
+    <!-- Main content -->
+    <div class="content">
+        <h1 class="glowing-text">Welcome to Menu Page</h1>
+
+        <button class="btn btn-primary" onclick="goToGoogleSearch()">Go to Google Search</button>
+        <button class="btn btn-danger" onclick="sendBulkEmail()">Send Bulk Email</button>
+        <button class="btn btn-primary" onclick="geoCoordinates()">Geo Coordinates</button>
+        <button class="btn btn-success" onclick="linuxWebUI()">Linux Terminal</button>
+        <button class="btn btn-success" onclick="dockerAutomation()">Docker Automation</button>
+        <button class="btn btn-danger" onclick="htmlInterpreter()">Live HTML Interpreter</button>
+        <button class="btn btn-primary" onclick="pythonSMS()">SMS through python</button>
+        <button class="btn btn-success" onclick="JScamera()">JS Camera</button>
+        <button class="btn btn-danger" onclick="livesuggests()">Live Suggestions</button>
+        <button class="btn btn-primary" onclick="imagesaver()">Live Camera</button>
+        <button class="btn btn-success" onclick="AWS_services()">AWS Services</button>
+        <button class="btn btn-danger" onclick="htmlTasks()">HTML Tasks</button>
+	 <button class="btn btn-primary" onclick="whatsappmsg()">WhatsApp Message</button>
+ <button class="btn btn-primary" onclick="s3service()">S3 Services</button>
+
+    </div>
+
+
+<script>
+    // Functions to handle button clicks
+    function goToGoogleSearch() {
+        window.location.href = "google_search.html";
+    }
+    function sendBulkEmail() {
+        window.location.href = "send_bulk_email.html";
+    }
+    function geoCoordinates() {
+        window.location.href = "geo_coordinates.html";
+    }
+    function linuxWebUI() {
+        window.location.href = "linux.html";
+    }
+    function dockerAutomation() {
+        window.location.href = "docker.html";
+    }
+    function htmlInterpreter() {
+        window.location.href = "html_live_interpreter.html";
+    }
+    function pythonSMS() {
+        window.location.href = "python_sms.html";
+    }
+    function JScamera(){
+        window.location.href = "https://3.108.133.100/menu/js_camera.html";
+    }
+    function livesuggests(){
+        window.location.href = "cmdsuggest.html";
+    }
+    function imagesaver(){
+        window.location.href = "https://3.108.133.100/menu/imagesaver.html";
+    }
+    function AWS_services(){
+        window.location.href = "http://3.108.133.100/menu/AWSfiles/index.html";
+    }
+    function htmlTasks(){
+        window.location.href = "HTMLTasks/index.html";
+    }
+     function whatsappmsg(){
+        window.location.href = "whatsapp.html";
+    }
+	 function s3service(){
+        window.location.href = "http://3.108.133.100/cgi-bin/AWSfiles/s3_bucket.py";
+    }
+
+</script>
+</body>
+</html>
+

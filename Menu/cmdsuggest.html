@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Command Suggestions</title>
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        main {
+      position: relative;
+      margin-top: 80px;
+      padding: 20px;
+    }
+    #bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+        nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 80px;
+      background-color: #1e1e1e;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      padding: 0 20px;
+      animation: slideUp 1s ease-in-out;
+    }
+    nav h1 {
+      color: #760094;
+      font-family: 'Montserrat', sans-serif;
+      padding-right: 35px;
+    }
+    nav ul {
+      display: flex;
+      gap: 20px;
+    }
+    nav ul li {
+      list-style: none;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: #f5f5f5;
+      font-weight: 500;
+      position: relative;
+      transition: color 0.3s, transform 0.3s;
+    }
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 0;
+      height: 2px;
+      background:#ffffff;
+      transition: width 0.3s;
+    }
+    nav ul li a:hover::after {
+      width: 100%;
+    }
+    nav ul li a:hover {
+      color: #00ff6a;
+      transform: scale(1.1) translateY(-3px);
+    }
+        h1 {
+            margin-bottom: 20px;
+            color: #00ff6a;
+        }
+        .button {
+            margin-top: 20px;
+            color: #000000;
+            background-color:rgba(0, 255, 21, 0.623);
+      transform: scale(1.05);
+      box-shadow: 0 4px 8px rgba(0, 255, 21, 0.548);
+        }
+        .button:hover {
+            color: #fff;
+            background: rgba(51, 255, 0, 0.993);
+            box-shadow: 0 4px 8px rgba(94, 255, 0, 0.836);
+    }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f1f1;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #commandInput {
+            width: calc(100% - 20px);
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        #suggestionList {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        #suggestionList li {
+            padding: 8px 12px;
+            cursor: pointer;
+            border-bottom: 1px solid #ddd;
+            transition: background-color 0.3s ease;
+        }
+        #suggestionList li:last-child {
+            border-bottom: none;
+        }
+        #suggestionList li:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="\my portfolio\page1.html">Home</a></li>
+            <li><a href="\my portfolio\Task.html">All Projects</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Command Suggestions</h1>
+        <input type="text" id="commandInput" placeholder="Type a command...">
+        <button class="button">submit</button>
+        <ul id="suggestionList"></ul>
+    </div>
+
+    <script>
+        const input = document.getElementById('commandInput');
+        const suggestionList = document.getElementById('suggestionList');
+
+        input.addEventListener('input', () => {
+            const query = input.value.trim();
+            if (query.length === 0) {
+                suggestionList.innerHTML = '';
+                return;
+            }
+            fetch(`/cgi-bin/suggestion.py?q=${query}`)
+                .then(response => response.json())
+                .then(data => {
+                    suggestionList.innerHTML = '';
+                    data.forEach(suggestion => {
+                        const li = document.createElement('li');
+                        li.textContent = suggestion;
+                        suggestionList.appendChild(li);
+                    });
+                })
+                .catch(error => console.error('Error fetching suggestions:', error));
+        });
+    </script>
+</body>
+<main id="bg-video">
+    <video autoplay muted loop id="bg-video">
+      <source src="/my portfolio\templates/z36pwGdt1v5peQu_Green-Halo-Tanjiro-4K_4_101134.mp4" type="video/mp4">
+    </video>
+</html>
+

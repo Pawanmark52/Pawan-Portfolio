@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <style>
+         body {
+            background: linear-gradient(to right, #ece9e6, #ffffff);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .container {
+            margin-top: 10px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.438);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+           main {
+         position: relative;
+         margin-top: 80px;
+         padding: 20px;
+       }
+       #bg-video {
+         position: fixed;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+         z-index: -1;
+       }
+       h2 {
+               margin-bottom: 20px;
+               color: #00ffea;
+           }
+           h1 {
+               margin-bottom: 20px;
+               color: #00ffea;
+           }
+           h3 {
+               margin-bottom: 20px;
+               color: #b9b9b9;
+           }
+           .form{
+            color: aliceblue;
+           } 
+           
+   </style>
+<head>
+    <title>DynamoDB Management</title>
+    <script>
+        function handleResponse(response) {
+            alert(JSON.stringify(response, null, 2));
+        }
+
+        function handleError(error) {
+            alert('Error: ' + error);
+        }
+
+        function submitForm(event, action) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            formData.append('action', action);
+
+            fetch('/cgi-bin/AWSfiles/dynamodb_cgi.py', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(handleResponse)
+            .catch(handleError);
+        }
+    </script>
+</head>
+<main id="bg-video">
+    <video autoplay muted loop id="bg-video">
+      <source src="/my portfolio\templates\dark-spiderman-neon-moewalls-com.mp4" type="video/mp4">
+    </video>
+<body>
+    <div class="container">
+    <h1>DynamoDB Management</h1>
+    
+    <h2>Create Table</h2>
+    <form onsubmit="submitForm(event, 'create_table')">
+        <h3>Table Name: <input type="text" name="table_name"><br>
+        Key Schema: <textarea name="key_schema"></textarea><br>
+        Attribute Definitions: <textarea name="attribute_definitions"></textarea><br>
+        Provisioned Throughput: <textarea name="provisioned_throughput"></textarea><br>
+        <input type="submit" value="Create Table"></h3>
+    </form>
+
+    <h2>List Tables</h2>
+    <form onsubmit="submitForm(event, 'list_tables')">
+        <input type="submit" value="List Tables">
+    </form>
+
+    <h2>Delete Table</h2>
+    <form onsubmit="submitForm(event, 'delete_table')">
+        <h3>Table Name: <input type="text" name="table_name"><br>
+        <input type="submit" value="Delete Table"></h3>
+    </form>
+    </div>
+</body>
+</html>
+

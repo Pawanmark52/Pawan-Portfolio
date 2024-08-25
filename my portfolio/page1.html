@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <title>Pawan's Portfolio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: linear-gradient(-45deg, #f8fafc, #c0c5cf, #e0eafc, #b9b3d4);
+      background-size: 400% 400%;
+      animation: gradientAnimation 15s ease infinite;
+      color: #ffffff;
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+    }
+    @keyframes gradientAnimation {
+      0% { background-position: 0% 0%; }
+      50% { background-position: 100% 100%; }
+      100% { background-position: 0% 0%; }
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 60px;
+      background: rgba(0, 255, 242, 0.795);
+      backdrop-filter: blur(10px);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      padding: 0 30px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+    nav.scrolled {
+      background: rgba(38, 44, 44, 0.9);
+      box-shadow: 0 6px 15px rgba(255, 255, 255, 0.3);
+    }
+    nav ul {
+      display: flex;
+      gap: 30px;
+    }
+    nav ul li {
+      list-style: none;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: #000000;
+      font-weight: 500;
+      position: relative;
+      font-family: 'Roboto', sans-serif;
+      transition: color 0.3s, transform 0.3s, text-shadow 0.3s, border-bottom 0.3s;
+    }
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 0;
+      height: 2px;
+      background:#00eeff;
+      transition: width 0.3s;
+    }
+    nav ul li a:hover::after {
+      width: 100%;
+    }
+    nav ul li a:hover {
+      color: #ffffff;
+      transform: scale(1.1) translateY(-3px);
+      text-shadow: 0 0 10px rgba(199, 199, 199, 0.5);
+    }
+    header {
+      height: 60px; /* Height of the header */
+    }
+    main {
+      position: relative;
+      margin-top: 80px;
+      padding: 20px;
+    }
+    .video-wrapper {
+      position: relative;
+      height: 60vh; /* Adjust this to control the height of the video section */
+      overflow: hidden;
+    }
+
+    #bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+    .firstsection {
+      display: flex;
+      justify-content: space-between;
+      height: 100%;
+      align-items: center;
+      gap: 30px;
+      margin: 40px 0;
+      animation: fadeIn 1.5s ease-in;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .leftsection {
+      font-size: 2.5rem;
+      color: #ffffff;
+      font-family: 'Roboto', sans-serif;
+      animation: slideIn 1s ease-out;
+    }
+    @keyframes slideIn {
+      from { transform: translateX(-100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    
+    /* Thunderbolt Animation */
+    .thunderbolt {
+      font-size: 3rem;
+      color: #ffffff;
+      position: relative;
+      text-shadow: 0 0 20px #ffffff, 0 0 40px #ffffff, 0 0 60px #ffffff;
+      animation: thunderboltEffect 5s infinite;
+    }
+
+    @keyframes thunderboltEffect {
+      0% {
+        text-shadow: 0 0 10px #000000, 0 0 20px #000000, 0 0 40px #000000, 0 0 60px #ffffff;
+      }
+      50% {
+        text-shadow:  0 0 20px #0084ff, 0 0 20px #0084ff, 0 0 30px #0084ff, 0 0 40px #0084ff, 0 0 50px #0084ff;
+        color: #000000;
+        transform: scale(1.5) rotate(-3deg);
+      }
+      100% {
+        text-shadow: 0 0 10px #000000, 0 0 20px #000000, 0 0 40px #000000, 0 0 60px #000000;
+        color: #ffffff;
+        transform: scale(1) rotate(0);
+      }
+    }
+
+    .glowing-text {
+      font-size: 3rem;
+      color: #ffffff;
+      text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #ffffff, 0 0 40px #ffffff, 0 0 50px #ffffff;
+      animation: glowAnimation 3s ease-in-out infinite alternate;
+    }
+    @keyframes glowAnimation {
+      from {
+        text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #ffffff, 0 0 40px #ffffff, 0 0 50px #ffffff;
+      }
+      to {
+        text-shadow: 0 0 20px #0084ff, 0 0 20px #0084ff, 0 0 30px #0084ff, 0 0 40px #0084ff, 0 0 50px #0084ff;
+      }
+    }
+
+    .about-section {
+      padding: 40px 20px;
+      background: rgba(0, 0, 0, 0.425);
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 1.5s ease-in-out;
+      margin: 20px 0;
+      color: #ffffff;
+      font-size: 1.2rem;
+      line-height: 1.7;
+    }
+    .about-content {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+    .about-image-container {
+      flex: 1;
+      position: relative;
+    }
+    .about-image {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 0 15px rgba(0, 0, 0, 0.2) inset;
+      filter: drop-shadow(0 0 20px rgb(0, 17, 255)) drop-shadow(0 0 40px rgb(0, 195, 255));
+      transition: transform 0.3s, filter 0.3s;
+    }
+    .about-image:hover {
+      transform: scale(1.05);
+      filter: drop-shadow(0 0 30px rgb(0, 204, 255)) drop-shadow(0 0 60px #00f);
+    }
+    .about-text {
+      flex: 2;
+      color: #ffffff;
+      font-size: 1.2rem;
+      line-height: 1.7;
+    }
+    .about-text p {
+      margin-bottom: 10px;
+    }
+    .about-text p:last-child {
+      font-size: 1.1rem;
+      font-style: italic;
+      color: #00e6ff;
+      text-shadow: 0 0 10px #00e6ff, 0 0 20px #00e6ff, 0 0 30px #00e6ff;
+      animation: glowAnimation1 2s ease-in-out infinite alternate;
+    }
+    @keyframes glowAnimation1 {
+      from {
+        text-shadow: 0 0 10px #00d7df, 0 0 20px #00d7df, 0 0 30px #00d7df, 0 0 40px #00d7df, 0 0 50px #00d7df;
+      }
+      to {
+        text-shadow: 0 0 20px #000000, 0 0 20px #000000, 0 0 30px #000000, 0 0 40px #000000, 0 0 50px #000000;
+      }
+    }
+    .highlight {
+    color: #00d4ff;
+    font-weight: bold;
+    text-shadow: 0 0 8px rgba(0, 212, 255, 0.8);
+    transition: color 0.4s, text-shadow 0.4s;
+  }
+
+  .highlight:hover {
+    color: #ff00d4;
+    text-shadow: 0 0 8px rgba(255, 0, 212, 0.8);
+  }
+
+  .animated-text {
+    animation: fadeInUp 1s ease-out both;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+
+    .glowing1 {
+      font-size: 1rem;
+      color: #ffffff;
+      text-shadow: 0 0 10px #00ffc8, 0 0 20px #00ffc8, 0 0 30px #00ffc8, 0 0 40px #00ffc8, 0 0 50px #00ffc8;
+      animation: glowAnimation1 3s ease-in-out infinite alternate;
+    }
+
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      perspective: 1000px;
+      padding: 20px;
+    }
+    .card {
+      background: #1c1c1c;
+      color: #ffffff;
+      padding: 20px;
+      border-radius: 15px;
+      background-size: cover;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s, filter 0.3s;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      font-family: 'Roboto', sans-serif;
+      animation: fadeIn 1.5s ease-in;
+    }
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 24px rgb(0, 0, 0);
+      filter: brightness(1.05);
+    }
+    .card h2 {
+      margin-bottom: 15px;
+      font-size: 1.8rem;
+      color: #00e6ff;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 700;
+      transition: color 0.3s;
+    }
+    .card:hover h2 {
+      color: #ffeb3b;
+    }
+    .card p, .card ul {
+      margin-bottom: 10px;
+      font-family: 'Roboto', sans-serif;
+    }
+    .card ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    .card ul li {
+      background-color: #1c1c1c;
+      color: #00e6ff;
+      margin: 5px 0;
+      padding: 5px;
+      border-radius: 5px;
+      transition: background-color 1.3s, transform 3.3s;
+    }
+    .card ul li:hover {
+      background-color: #00ffc8;
+      transform: translateX(5px);
+    }
+    footer {
+      background: #000000;
+      z-index: -1;
+      color: #ecf0f1;
+      padding: 10px 10px;
+      text-align: center;
+      margin-top: 40px;
+      border-top: 5px solid #3498db;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 2s ease-in;
+    }
+    footer h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    footer p {
+      margin-bottom: 20px;
+    }
+    .btn {
+      display: inline-block;
+      color: #ffffff;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+      margin: 5px;
+      font-family: 'Roboto', sans-serif;
+    }
+    .btn-linkedin {
+      background-color: #0077b5;
+    }
+    .btn-linkedin:hover {
+      background-color: #005b89;
+      transform: scale(1.1);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+    .btn-email {
+      background-color: #00dffd;
+    }
+    .btn-email:hover {
+      background-color: #00dffd;
+      transform: scale(1.1);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+    .btn i {
+      margin-right: 10px;
+    }
+
+    .btn1 {
+      display: inline-block;
+      color: #ffffff;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+      margin: 5px;
+      font-family: 'Roboto', sans-serif;
+    }
+    .btn1 {
+      background-color: #0077b5;
+    }
+    .btn1:hover {
+      background-color: #005b89;
+      transform: scale(1.1);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+    .opening-animation {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.8);
+      color: rgb(255, 255, 255);
+      font-size: 3rem;
+      font-family: 'Poppins', sans-serif;
+      animation: fadeIn 2s ease-in;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1001;
+    }
+    .opening-animation.fade-out {
+      animation: fadeOut 1s forwards;
+    }
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="opening-animation glowing-opening" id="opening-animation">Welcome to Pawan's Portfolio</div>
+
+  <header>
+    <nav id="nav">
+      <div class="left"><a href="#home" style="text-decoration:none; color:#000000;">Pawan's Portfolio</a></div>
+      <div class="right">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <main id="home">
+    <video autoplay muted loop id="bg-video">
+      <source src="templates/homepage 3.mp4" type="video/mp4">
+    </video>
+    <section class="firstsection">
+      <div class="leftsection">
+        <div class="hero-animation" id="lottie-animation"></div>
+        <h1>Hi, I'm <span class="thunderbolt">Pawan Soni</span></h1>
+        <p>
+          <span class="thunderbolt">Graphic Designer</span> | Web Developer | Creative Thinker
+        </p>
+      </div>
+    </section>
+    <section id="about" class="about-section">
+      <h2 class="about-heading">About Me</h2>
+      <div class="about-content">
+        <div class="about-image-container">
+          <img src="templates/profile pic for me.png" alt="Pawan Soni" class="about-image">
+          <div class="image-overlay"></div>
+        </div>
+        <div class="about-text-container">
+          <div class="about-text animated-text">
+            <p class="about-intro">I am a <span class="highlight">seasoned graphic designer</span> and <span class="highlight">web developer</span>. My journey in design has been fueled by a passion for creativity and innovation.</p>
+            <p class="about-detail">I specialize in creating visually appealing designs that are both functional and aesthetically pleasing.</p>
+            <p class="about-hobby">I love <span class="highlight">gaming</span>, and my creativity often stems from it. I bring innovative solutions to life through my strong front-end development skills.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="skills">
+      <h2>Skills</h2>
+      <div class="card-container">
+        <div class="card">
+          <h2>Graphic Design</h2>
+          <p>Expert in Adobe Creative Suite (Photoshop, Illustrator, InDesign).</p>
+          <ul>
+            <li><span class="glowing1">Logo Design</span></li>
+            <li><span class="glowing1">Branding</span></li>
+            <li><span class="glowing1">Print Design</span></li>
+            <li><span class="glowing1">UI & UX Design</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h2>Web Development</h2>
+          <p>Proficient in front-end technologies and frameworks.</p>
+          <ul>
+            <li><span class="glowing1">HTML & CSS</span></li>
+            <li><span class="glowing1">Python</span></li>
+            <li><span class="glowing1">JavaScript</span></li>
+            <li><span class="glowing1">React</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h2>Creative Solutions</h2>
+          <p>Innovative thinker with a knack for problem-solving.</p>
+          <ul>
+            <li><span class="glowing1">Concept Development</span></li>
+            <li><span class="glowing1">Project Management</span></li>
+            <li><span class="glowing1">Art Direction</span></li>
+            <li><span class="glowing1">Marketing Strategies</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="card-container">
+        <div class="card">
+          <h2>My All Projects</h2>
+          <p>My all Python Projects are here.</p>
+          <button class="btn1" onclick="window.location.href='AllProjects.html'">View Projects</button>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <h2><span class="glowing-text">Get in Touch</span></h2>
+    <p>Feel free to reach out if you're interested in working together or just want to connect!</p>
+    <a href="https://www.linkedin.com/in/pawan-soni-786570259" class="btn btn-linkedin">
+      <i class="fab fa-linkedin"></i> LinkedIn
+    </a>
+    <a href="mailto:pawansoni2k3@example.com" class="btn btn-email">
+      <i class="fas fa-envelope"></i> Email
+    </a>
+  </footer>
+  <script>
+    window.addEventListener('scroll', function () {
+      var nav = document.getElementById('nav');
+      if (window.pageYOffset > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    window.addEventListener('load', function () {
+      var openingAnimation = document.getElementById('opening-animation');
+      setTimeout(function () {
+        openingAnimation.classList.add('fade-out');
+      }, 3000); // Display the opening animation for 3 seconds
+    });
+  </script>
+</body>
+</html>

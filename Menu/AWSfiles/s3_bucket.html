@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage S3 Buckets</title>
+    <style>
+    
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        main {
+      position: relative;
+      margin-top: 80px;
+      padding: 20px;
+    }
+    #bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+        h2 {
+            color: #a19f9f;
+            margin-bottom: 10px;
+        }
+
+        form {
+            background-color: #00000093;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type=text],
+        input[type=file],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #fafafa;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type=submit] {
+            background-color: #16bcc2;
+            color: #000000;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        input[type=submit]:hover {
+            background-color: #0056b3;
+        }
+
+        .message {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            background-color: #ffffff;
+            color: #2c0909;
+        }
+    </style>
+</head>
+<main id="bg-video">
+    <video autoplay muted loop id="bg-video">
+      <source src="/my portfolio\templates\dark-spiderman-neon-moewalls-com.mp4" type="video/mp4">
+    </video>
+<body>
+    <div class="container">
+        <h2>Create S3 Bucket</h2>
+        <form action="/cgi-bin/AWSfiles/s3_bucket.py" method="post">
+            <input type="hidden" name="action" value="create_bucket">
+           <h2><label for="bucket_name">Bucket Name:</label></h2>
+            <input type="text" id="bucket_name" name="bucket_name" required>
+            <br><br>
+            <input type="submit" value="Create Bucket">
+        </form>
+
+        <h2>Upload File to S3 Bucket</h2>
+        <form action="/cgi-bin/AWSfiles/s3_bucket.py" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="action" value="upload_file">
+           <h2><label for="bucket_name">Select Bucket:</label></h2>
+            <select id="bucket_name" name="bucket_name" required>
+                <!-- Options will be dynamically populated by Python script -->
+            </select>
+            <br><br>
+            <label for="file">Choose File:</label>
+            <input type="file" id="file" name="file" required>
+            <br><br>
+            <input type="submit" value="Upload File">
+        </form>
+
+        <!-- This div will display success or error messages -->
+        <div id="message" class="message">
+            <!-- Messages will be dynamically populated by Python script -->
+        </div>
+    </div>
+
+</body>
+
+</html>
+

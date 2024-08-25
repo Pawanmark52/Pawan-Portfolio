@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Launch AWS Instance</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #ece9e6, #ffffff);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.623);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        main {
+      position: relative;
+      margin-top: 80px;
+      padding: 20px;
+    }
+    #bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #acacac;
+        }
+        label {
+            font-weight: bold;
+            color: #00ffd5;
+        }
+        .form-control {
+            margin-bottom: 10px;
+        }
+        .btn {
+            margin-top: 20px;
+            color: #000000;
+            background: rgba(0, 255, 255, 0.623);
+            box-shadow: 0 4px 8px rgba(0, 238, 255, 0.836);
+        }
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background: #f9f9f9;
+        }
+    </style>
+</head>
+<main id="bg-video">
+    <video autoplay muted loop id="bg-video">
+      <source src="/my portfolio\templates\dark-spiderman-neon-moewalls-com.mp4" type="video/mp4">
+    </video>
+<body>
+    <div class="container">
+        <h1>Launch AWS Instance</h1>
+        <form id="launch-form" action="/cgi-bin/launch_instance.py" method="post">
+            <label for="instanceType">Instance Type:</label>
+            <input type="text" id="instanceType" name="instanceType" class="form-control" placeholder="Enter Instance Type">
+            <label for="imageId">Image ID:</label>
+            <input type="text" id="imageId" name="imageId" class="form-control" placeholder="Enter Image ID">
+            <label for="regionName">Region Name:</label>
+            <input type="text" id="regionName" name="regionName" class="form-control" placeholder="Enter Region Name">
+            <button type="submit" class="btn btn-primary">Launch</button>
+        </form>
+        <div id="result"></div>
+    </div>
+    <script>
+        document.getElementById('launch-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var formData = new FormData(event.target);
+            var params = new URLSearchParams(formData);
+
+            fetch('/cgi-bin/AWSfiles/launch_instance.py', {
+                method: 'POST',
+                body: params
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('result').innerText = JSON.stringify(data, null, 2);
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>
+
